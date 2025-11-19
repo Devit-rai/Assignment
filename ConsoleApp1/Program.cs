@@ -55,5 +55,119 @@ class Program
         // Calling SumAll (params)
         int total = demo.SumAll(10, 20, 30, 40);
         Console.WriteLine("Sum of all numbers: " + total);
+
+        //Task 4
+        // Object 1 using default constructor
+        Player p1 = new Player();
+        Console.WriteLine("Default Constructor Object:");
+        Console.WriteLine("Name: " + p1.playerName);
+        Console.WriteLine("Level: " + p1.level);
+        Console.WriteLine("Health: " + p1.health);
+
+        Console.WriteLine();
+
+        // Object 2 using parameterized constructor
+        Player p2 = new Player("David", 5, 100);
+        Console.WriteLine("Parameterized Constructor Object:");
+        Console.WriteLine("Name: " + p2.playerName);
+        Console.WriteLine("Level: " + p2.level);
+        Console.WriteLine("Health: " + p2.health);
+
+
+        //Task 5
+        // -------------------------------
+
+        // Part 1: Enum DayType (Weekend / Weekday)
+  
+
+        Console.Write("Enter a day: ");
+        string day = Console.ReadLine()!; // Null-forgiving operator avoids warning
+
+        // Convert input to lowercase for comparison
+        string lowerDay = day.ToLower();
+        DayType type;
+
+        if (lowerDay == "friday" || lowerDay == "saturday")
+        {
+            type = DayType.Weekend;
+        }
+        else
+        {
+            type = DayType.Weekday;
+        }
+
+        Console.WriteLine("It is: " + type);
+        Console.WriteLine();
+
+        // Part 2: Book Record
+        // -------------------------------
+
+        // First book object
+        Book book1 = new Book("C# Basics", "John Doe", 499.99);
+
+        // Second book using 'with' expression (change title and price)
+        Book book2 = book1 with
+        {
+            title = "Advanced C#",
+            price = 799.50
+        };
+
+        // Print first book object
+        Console.WriteLine("Book 1 Details:");
+        Console.WriteLine($"Title: {book1.title}, Author: {book1.author}, Price: {book1.price}");
+        Console.WriteLine();
+
+        // Deconstruct second book object
+        var (title2, author2, price2) = book2;
+
+        Console.WriteLine("Book 2 (Deconstructed):");
+        Console.WriteLine($"Title: {title2}, Author: {author2}, Price: {price2}");
+
+        //Task 6
+
+        // Ask for marks
+        Console.Write("Enter marks obtained: ");
+        string marksInput = Console.ReadLine();
+        bool isMarksValid = int.TryParse(marksInput, out int marks);
+
+        // Ask for total
+        Console.Write("Enter total marks: ");
+        string totalInput = Console.ReadLine();
+        bool isTotalValid = int.TryParse(totalInput, out int totalMarks);
+
+        // Validate inputs
+        if (!isMarksValid || !isTotalValid || total == 0)
+        {
+            Console.WriteLine("Invalid input! Please enter valid integers and total > 0.");
+            return;
+        }
+
+        // ---------------- Breakpoint 1 ----------------
+        // Before calculation
+        double percentage = marks / total * 100; // This is the source of error
+
+        // ---------------- Breakpoint 2 ----------------
+        // After calculation
+        Console.WriteLine("Percentage: " + percentage + "%");
+        
+        //---------------- 
+        //Corrected program 
+        Console.Write("Enter marks obtained: ");
+        int.TryParse(Console.ReadLine(), out int mark);
+
+        Console.Write("Enter total marks: ");
+        int.TryParse(Console.ReadLine(), out int MarksObtained);
+
+        if (total == 0)
+        {
+            Console.WriteLine("Total marks cannot be zero.");
+            return;
+        }
+
+        // Corrected calculation
+        double percent = (double)marks / total * 100;
+
+        Console.WriteLine("Percentage: " + percentage + "%");
     }
 }
+
