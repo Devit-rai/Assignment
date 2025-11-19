@@ -31,12 +31,29 @@ class Program
         calc.PrintWelcome();
 
         int sum = calc.Add(10, 20);
-        int product1 = calc.Multiply(5, 4);  // Both parameters
-        int product2 = calc.Multiply(7);     // Uses default value of num2 = 1
+        int product1 = calc.Multiply(5, 4);  
+        int product2 = calc.Multiply(7);     
 
         // Printing results
         Console.WriteLine("Addition: " + sum);
         Console.WriteLine("Multiplication (5 * 4): " + product1);
         Console.WriteLine("Multiplication with default (7 * 1): " + product2);
+
+        //Task 3
+        ParameterDemo demo = new ParameterDemo();
+
+        // Calling Increase (ref)
+        int value = 5;
+        demo.Increase(ref value);
+        Console.WriteLine("Value after Increase: " + value);
+
+        // Calling GetFullName (out)
+        string fullName;
+        demo.GetFullName(out fullName);
+        Console.WriteLine("Full Name: " + fullName);
+
+        // Calling SumAll (params)
+        int total = demo.SumAll(10, 20, 30, 40);
+        Console.WriteLine("Sum of all numbers: " + total);
     }
 }
